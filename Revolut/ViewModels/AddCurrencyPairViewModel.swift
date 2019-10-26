@@ -29,7 +29,7 @@ struct AddCurrencyPairViewModel: AddCurrencyPairViewInputs, AddCurrencyPairViewO
     init(currencyProvider: CurrencyProviding = CurrencyProvider()) {
         titleLabelLocalizedText = "revolut.addCurrencyPair.title".localized
         descriptionLabelLocalizedText = "revolut.addCurrencyPair.description".localized
-        currencies = currencyProvider.allCurrenciesData().map { $0.currencies } ?? []
+        currencies = currencyProvider.currencies()
     }
 
     // Outputs

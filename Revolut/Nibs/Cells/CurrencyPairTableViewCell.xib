@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -62,10 +61,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="fromCurrencyCodeLabel" destination="mqG-4W-JZl" id="PEG-Yr-XRo"/>
                 <outlet property="fromCurrencyNameLabel" destination="DVS-9t-9ME" id="nkp-tw-ygP"/>
-                <outlet property="toCurrencyCodeLabel" destination="Vub-7T-OhF" id="x0I-T2-aNz"/>
+                <outlet property="fromCurrencyRateLabel" destination="mqG-4W-JZl" id="PEG-Yr-XRo"/>
                 <outlet property="toCurrencyNameLabel" destination="Dlt-l4-4FN" id="kau-zd-UuN"/>
+                <outlet property="toCurrencyRateLabel" destination="Vub-7T-OhF" id="x0I-T2-aNz"/>
             </connections>
             <point key="canvasLocation" x="-259" y="-57"/>
         </tableViewCell>

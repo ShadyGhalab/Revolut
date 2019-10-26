@@ -16,8 +16,8 @@ private enum Constants {
 
 class CurrencyPairTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var fromCurrencyCodeLabel: UILabel!
-    @IBOutlet private weak var toCurrencyCodeLabel: UILabel!
+    @IBOutlet private weak var fromCurrencyRateLabel: UILabel!
+    @IBOutlet private weak var toCurrencyRateLabel: UILabel!
     @IBOutlet private weak var fromCurrencyNameLabel: UILabel!
     @IBOutlet private weak var toCurrencyNameLabel: UILabel!
 
@@ -28,27 +28,27 @@ class CurrencyPairTableViewCell: UITableViewCell {
     }
 
     private func bindViewModel() {
-        fromCurrencyCodeLabel.text = "1 \(viewModel.outputs.currencyPair.fromCurrencyCode )"
+        fromCurrencyRateLabel.text = "1 \(viewModel.outputs.currencyPair.fromCurrencyCode)"
         toCurrencyNameLabel.text = viewModel.outputs.currencyPair.toCurrencyName + "  " + viewModel.outputs.currencyPair.toCurrencyCode
         fromCurrencyNameLabel.text = viewModel.outputs.currencyPair.fromCurrencyName
 
-        viewModel.outputs.updateCurrencyRateIfNeeded = { [weak self] rate in
-            if rate.count >= Constants.minDigitsToApplySmallFont {
-                self?.toCurrencyCodeLabel.attributedText = self?.attributedText(for: rate)
+        viewModel.outputs.updateCurrencyRateIfNeeded = { [weak self] currencyRate in
+            if currencyRate.count >= Constants.minDigitsToApplySmallFont {
+                self?.toCurrencyRateLabel.attributedText = self?.attributedText(for: currencyRate)
                 return
             }
 
-            self?.toCurrencyCodeLabel.text = rate
+            self?.toCurrencyRateLabel.text = currencyRate
         }
     }
 
-    private func attributedText(for rate: String) -> NSMutableAttributedString {
-        let rateText = NSMutableAttributedString(string: rate)
-        let location = rate.index(rate.endIndex, offsetBy: -Constants.maxDecimalDigitsWithSmallFont).utf16Offset(in: rate)
-        rateText.setAttributes([.font: UIFont.systemFont(ofSize: Constants.fontSize)],
+    private func attributedText(for string: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: string)
+        let location = string.index(string.endIndex, offsetBy: -Constants.maxDecimalDigitsWithSmallFont).utf16Offset(in: string)
+        attributedString.setAttributes([.font: UIFont.systemFont(ofSize: Constants.fontSize)],
                                              range: NSRange(location: location, length: Constants.maxDecimalDigitsWithSmallFont))
 
-        return rateText
+        return attributedString
     }
 
     override func prepareForReuse() {
@@ -56,8 +56,8 @@ class CurrencyPairTableViewCell: UITableViewCell {
 
         viewModel.inputs.prepareForReuse()
 
-        toCurrencyCodeLabel.text = nil
-        fromCurrencyCodeLabel.text = nil
+        toCurrencyRateLabel.text = nil
+        fromCurrencyRateLabel.text = nil
         toCurrencyNameLabel.text = nil
         fromCurrencyNameLabel.text = nil
     }

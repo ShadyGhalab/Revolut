@@ -35,8 +35,8 @@ final class CurrencyPairCellViewModel: CurrencyPairCellViewInputs, CurrencyPairC
     }
 
     private let currencyPairRateProvider: CurrencyPairRateProviding
+    private var isCurrencyRateBeingFetched: Bool = false
     private var time: Timer?
-    private var isRateBeingFetched: Bool = false
     private var currencyRate: String? {
         willSet {
             if let newRate = newValue, newRate != currencyRate {
@@ -54,10 +54,10 @@ final class CurrencyPairCellViewModel: CurrencyPairCellViewInputs, CurrencyPairC
     }
 
     @objc private func fetchCurrencyPairRate() {
-        guard !isRateBeingFetched  else { return }
+        guard !isCurrencyRateBeingFetched  else { return }
 
-        isRateBeingFetched = true
-        currencyPairRateProvider.rates(fromCurrencyCode: currencyPair.fromCurrencyCode,
+        isCurrencyRateBeingFetched = true
+        currencyPairRateProvider.rate(fromCurrencyCode: currencyPair.fromCurrencyCode,
                                     toCurrencyCode: currencyPair.toCurrencyCode) { [weak self] currencyRate in
                 DispatchQueue.main.async {
                     if let currencyRate: Double = currencyRate?.values.first {
@@ -65,7 +65,7 @@ final class CurrencyPairCellViewModel: CurrencyPairCellViewInputs, CurrencyPairC
                     }
                 }
 
-                self?.isRateBeingFetched = false
+                self?.isCurrencyRateBeingFetched = false
         }
     }
 

@@ -14,7 +14,7 @@ enum DataResponseDecodeError: Error {
 
 protocol DataResponseDecoding {
     func decodeJson<F: Feed>(from feed: F, with data: Data) throws -> F.JSONResponseStructure
-    func decodeModel<C: Codable>(from data: Data) throws -> C
+    func decodeModel<C: Decodable>(from data: Data) throws -> C
 }
 
 struct DataResponseDecoder: DataResponseDecoding {
@@ -33,7 +33,7 @@ struct DataResponseDecoder: DataResponseDecoding {
         return jsonDict
     }
 
-    func decodeModel<C: Codable>(from data: Data) throws -> C {
+    func decodeModel<C: Decodable>(from data: Data) throws -> C {
         let decoder = JSONDecoder.makeDecoder(with: nil)
         return try decoder.decode(C.self, from: data)
     }

@@ -25,6 +25,7 @@ final class CurrencyPairViewController: UIViewController, StoryboardMakeable {
             tableView.delegate = self
         }
     }
+
     var viewModel: CurrencyPairViewProtocol! {
         didSet {
             guard dataSource == nil else { return }
@@ -40,7 +41,7 @@ final class CurrencyPairViewController: UIViewController, StoryboardMakeable {
     }
 
     private func bindViewModel() {
-        viewModel.outputs.willDeleteCurrencyPairCell = { [unowned self] indexPath in
+        viewModel.outputs.didDeleteCurrencyPair = { [unowned self] indexPath in
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

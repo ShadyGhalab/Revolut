@@ -19,7 +19,7 @@ final class CurrencyTableViewController: UITableViewController, StoryboardMakeab
 
     private var dataSource: CurrencyTableViewDataSource? {
         didSet {
-
+            tableView.delegate = self
             tableView.dataSource = dataSource
         }
     }

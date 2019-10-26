@@ -36,8 +36,6 @@ This project uses Carthage to manage the dependencies.
 ```
 - Install Swiftlint using: brew install swiftlint
 
-- git clone https://github.com/ShadyGhalab/Revolut.git
-
 - carthage update --platform iOS
 
 - Run! 😎

@@ -24,21 +24,20 @@ class CurrencyPairViewModelTests: XCTestCase {
                                               toCurrencyName: "United States Dollar")
         
         viewContext.saveContext()
-        
     }
     
     func testWillDeleteCurrencyPairCell_whenTheUserDeletesCurrencyPair() {
         let viewModel: CurrencyPairViewProtocol = CurrencyPairViewModel()
         _ = viewModel.outputs.fetchedResultController
         
-        var willDeleteCurrencyPairCellCalled = false
-        viewModel.outputs.willDeleteCurrencyPairCell = { indexPath in
-            willDeleteCurrencyPairCellCalled = true
+        var didDeleteCurrencyPairCalled = false
+        viewModel.outputs.didDeleteCurrencyPair = { indexPath in
+            didDeleteCurrencyPairCalled = true
         }
         
         viewContext.delete(currencyPair)
         viewContext.saveContext()
         
-        XCTAssertTrue(willDeleteCurrencyPairCellCalled)
+        XCTAssertTrue(didDeleteCurrencyPairCalled)
     }
 }

@@ -13,7 +13,7 @@ protocol CurrencyPairViewInputs { }
 
 protocol CurrencyPairViewOutputs {
     var fetchedResultController: NSFetchedResultsController<CurrencyPair> { get }
-    var willDeleteCurrencyPairCell: ((IndexPath) -> Void)? { get set }
+    var didDeleteCurrencyPair: ((IndexPath) -> Void)? { get set }
 }
 
 protocol CurrencyPairViewProtocol: AnyObject {
@@ -28,7 +28,7 @@ final class CurrencyPairViewModel: NSObject, CurrencyPairViewInputs, CurrencyPai
 
     private var _fetchedResultsController: NSFetchedResultsController<CurrencyPair>? // swiftlint:disable:this identifier_name
     private let viewContext: NSManagedObjectContext
-    var willDeleteCurrencyPairCell: ( (IndexPath) -> Void)?
+    var didDeleteCurrencyPair: ( (IndexPath) -> Void)?
 
     init(viewContext: NSManagedObjectContext = AppDelegate.shared.persistentContainer.viewContext) {
         self.viewContext = viewContext
@@ -67,7 +67,7 @@ extension CurrencyPairViewModel: NSFetchedResultsControllerDelegate {
         switch type {
         case .delete:
             if let indexPath = indexPath {
-                willDeleteCurrencyPairCell?(indexPath)
+                didDeleteCurrencyPair?(indexPath)
             }
         default:
             break

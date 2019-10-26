@@ -10,6 +10,7 @@
 		309C6B39236454C400BC5E58 /* NSManagedObjectContext+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C6B38236454C400BC5E58 /* NSManagedObjectContext+Save.swift */; };
 		309C6B3B236455FA00BC5E58 /* String+Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C6B3A236455FA00BC5E58 /* String+Url.swift */; };
 		309C6B3D2364627400BC5E58 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 309C6B3C2364627400BC5E58 /* README.md */; };
+		309C6B3F23648F1300BC5E58 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C6B3E23648F1300BC5E58 /* Configuration.swift */; };
 		D50DD4292360836100E3770B /* CurrencyPairTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50DD4282360836100E3770B /* CurrencyPairTableViewDataSource.swift */; };
 		D50DD42C2360A1F000E3770B /* CurrencyPairCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50DD42B2360A1F000E3770B /* CurrencyPairCellViewModel.swift */; };
 		D50DD42E2360B91400E3770B /* CurrencyPairRateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50DD42D2360B91400E3770B /* CurrencyPairRateProvider.swift */; };
@@ -98,6 +99,7 @@
 		309C6B38236454C400BC5E58 /* NSManagedObjectContext+Save.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Save.swift"; sourceTree = "<group>"; };
 		309C6B3A236455FA00BC5E58 /* String+Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Url.swift"; sourceTree = "<group>"; };
 		309C6B3C2364627400BC5E58 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		309C6B3E23648F1300BC5E58 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		D50DD4282360836100E3770B /* CurrencyPairTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairTableViewDataSource.swift; sourceTree = "<group>"; };
 		D50DD42B2360A1F000E3770B /* CurrencyPairCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairCellViewModel.swift; sourceTree = "<group>"; };
 		D50DD42D2360B91400E3770B /* CurrencyPairRateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairRateProvider.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				D54FE4C7235F007300215136 /* DataRequester.swift */,
 				D54FE4C5235F007300215136 /* DataResponseDecoder.swift */,
 				D54FE4C6235F007300215136 /* RequestManager.swift */,
+				309C6B3E23648F1300BC5E58 /* Configuration.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				D515A0A023635A3A0038EEF1 /* CellIdentifier.swift in Sources */,
 				D54FE4CA235F007300215136 /* DataRequester.swift in Sources */,
 				D515A08F236340FA0038EEF1 /* StoryboardMakeable.swift in Sources */,
+				309C6B3F23648F1300BC5E58 /* Configuration.swift in Sources */,
 				D54FE4AA235EFFC600215136 /* Revolut.xcdatamodeld in Sources */,
 				D56900BA2360821300EADA0A /* CurrencyPair+CoreDataProperties.swift in Sources */,
 				D50DD42E2360B91400E3770B /* CurrencyPairRateProvider.swift in Sources */,

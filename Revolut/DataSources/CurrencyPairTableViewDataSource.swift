@@ -23,7 +23,7 @@ final class CurrencyPairTableViewDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyPairTableViewCell.identifier, for: indexPath) as? CurrencyPairTableViewCell
-        if let currencyPair = fetchedResultController.fetchedObjects?[indexPath.item] {
+        if let currencyPair = currencyPair(at: indexPath) {
             cell?.viewModel = CurrencyPairCellViewModel(currencyPair: currencyPair)
         }
 
@@ -35,9 +35,15 @@ final class CurrencyPairTableViewDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete, let currencyPair = fetchedResultController.fetchedObjects?[indexPath.item] else { return }
+        guard editingStyle == .delete, let currencyPair = currencyPair(at: indexPath) else { return }
 
         fetchedResultController.managedObjectContext.delete(currencyPair)
         fetchedResultController.managedObjectContext.saveContext()
+    }
+}
+
+extension CurrencyPairTableViewDataSource {
+    private func currencyPair(at indexPath: IndexPath) -> CurrencyPair? {
+        return fetchedResultController.fetchedObjects?[indexPath.item]
     }
 }

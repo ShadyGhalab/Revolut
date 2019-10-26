@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CurrencyPairRateProviding {
-    func rates(fromCurrencyCode: String?, toCurrencyCode: String?, completionHandler: @escaping (CurrencyRatesFeed.JSONResponseStructure?) -> Void)
+    func rate(fromCurrencyCode: String, toCurrencyCode: String, completionHandler: @escaping (CurrencyRatesFeed.JSONResponseStructure?) -> Void)
 }
 
 struct CurrencyPairRateProvider: CurrencyPairRateProviding {
@@ -17,17 +17,14 @@ struct CurrencyPairRateProvider: CurrencyPairRateProviding {
     private let requestManager: CanRequestFeeds
     private let absolutePath: String
 
-    init( requestManager: CanRequestFeeds = RequestManager(), absolutePath: String = "https://europe-west1-revolut-230009.cloudfunctions.net/revolut-ios") {
+    init( requestManager: CanRequestFeeds = RequestManager(),
+          absolutePath: String = "\(Configuration(backendEnvironment: .production).backendURL)/revolut-ios") {
         self.requestManager = requestManager
         self.absolutePath = absolutePath
+
     }
 
-    func rates(fromCurrencyCode: String?, toCurrencyCode: String?, completionHandler: @escaping (CurrencyRatesFeed.JSONResponseStructure?) -> Void) {
-        guard let fromCurrencyCode = fromCurrencyCode, let toCurrencyCode = toCurrencyCode else {
-            completionHandler(nil)
-            return
-        }
-
+    func rate(fromCurrencyCode: String, toCurrencyCode: String, completionHandler: @escaping (CurrencyRatesFeed.JSONResponseStructure?) -> Void) {
         let pairCode = fromCurrencyCode + toCurrencyCode
         let feed = CurrencyRatesFeed(absolutePath: absolutePath, parameters: [["pairs": pairCode]])
 

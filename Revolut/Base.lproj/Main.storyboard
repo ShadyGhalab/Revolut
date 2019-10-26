@@ -127,10 +127,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="RQ8-EB-7bG" id="8RX-ng-Uiu"/>
-                            <outlet property="delegate" destination="RQ8-EB-7bG" id="wPE-7Q-xVi"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="YRa-aa-G2G"/>
                     <connections>

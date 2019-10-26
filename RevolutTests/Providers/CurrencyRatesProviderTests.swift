@@ -17,7 +17,7 @@ class CurrencyRatesProviderTests: XCTestCase {
         
         let currencyPairRateProvider: CurrencyPairRateProviding = CurrencyPairRateProvider(requestManager: mockedRequestManager)
         
-        currencyPairRateProvider.rates(fromCurrencyCode: "CZK", toCurrencyCode: "USD") { value in
+        currencyPairRateProvider.rate(fromCurrencyCode: "CZK", toCurrencyCode: "USD") { value in
             XCTAssertEqual(value?.first?.value, 0.7897)
         }
     }
@@ -27,7 +27,7 @@ class CurrencyRatesProviderTests: XCTestCase {
         
         let currencyPairRateProvider: CurrencyPairRateProviding = CurrencyPairRateProvider(requestManager: mockedRequestManager)
         
-        currencyPairRateProvider.rates(fromCurrencyCode: "CZK", toCurrencyCode: "USD") { value in
+        currencyPairRateProvider.rate(fromCurrencyCode: "CZK", toCurrencyCode: "USD") { value in
             XCTAssertNil(value?.first?.value)
         }
     }

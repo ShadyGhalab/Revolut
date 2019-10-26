@@ -70,9 +70,7 @@ final class CurrencyTableViewModel: CurrencyTableViewInputs, CurrencyTableViewOu
 extension CurrencyTableViewModel {
 
     private func addCurrencyPairIfNeeded() {
-        let fetcRequest: NSFetchRequest = CurrencyPair.fetchRequest()
-        let predicate = NSPredicate(format: "fromCurrencyCode == %@ && toCurrencyCode == %@", selectedCurrencies[0].code, selectedCurrencies[1].code)
-        fetcRequest.predicate = predicate
+        let fetcRequest = CurrencyPair.fetchRequest(fromCurrencyCode: selectedCurrencies[0].code, toCurrencyCode: selectedCurrencies[1].code)
 
         do {
             if let currencyPair = try viewContext.fetch(fetcRequest).first {

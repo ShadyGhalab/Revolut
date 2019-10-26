@@ -14,13 +14,12 @@ class CurrencyProviderTests: XCTestCase {
     func testAllCurrenciesData_whenTheJsonFileIsNotEmpty() {
         let currencyProvider: CurrencyProviding = CurrencyProvider(resourceName: "TestCurrenciesData", bundle: Bundle(for: AddCurrencyPairViewModelTests.self))
         
-        XCTAssertNotNil(currencyProvider.allCurrenciesData())
-        XCTAssertTrue(currencyProvider.allCurrenciesData()!.currencies.count == 2)
+        XCTAssertTrue(currencyProvider.currencies().count == 2)
     }
     
     func testAllCurrenciesData_whenTheJsonFileIsEmpty() {
         let currencyProvider: CurrencyProviding = CurrencyProvider(resourceName: "TestEmptyCurrenciesData", bundle: Bundle(for: AddCurrencyPairViewModelTests.self))
         
-        XCTAssertNil(currencyProvider.allCurrenciesData())
+        XCTAssertTrue(currencyProvider.currencies().isEmpty)
     }
 }

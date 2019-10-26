@@ -16,6 +16,14 @@ extension CurrencyPair {
         return NSFetchRequest<CurrencyPair>(entityName: "CurrencyPair")
     }
 
+    @nonobjc public class func fetchRequest(fromCurrencyCode: String, toCurrencyCode: String) -> NSFetchRequest<CurrencyPair> {
+        let fetcRequest: NSFetchRequest = CurrencyPair.fetchRequest()
+        let predicate = NSPredicate(format: "fromCurrencyCode == %@ && toCurrencyCode == %@", fromCurrencyCode, toCurrencyCode)
+        fetcRequest.predicate = predicate
+
+        return fetcRequest
+    }
+
     @NSManaged public var fromCurrencyCode: String
     @NSManaged public var toCurrencyCode: String
     @NSManaged public var fromCurrencyName: String

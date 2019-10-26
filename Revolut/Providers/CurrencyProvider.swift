@@ -10,7 +10,7 @@ import Foundation
 import os.log
 
 protocol CurrencyProviding {
-    func allCurrenciesData() -> CurrenciesData?
+    func currencies() -> [Currency]
 }
 
 struct CurrencyProvider: CurrencyProviding {
@@ -25,7 +25,7 @@ struct CurrencyProvider: CurrencyProviding {
         self.bundle = bundle
     }
 
-    func allCurrenciesData() -> CurrenciesData? {
+    func currencies() -> [Currency] {
         guard let path = bundle.path(forResource: resourceName, ofType: "json") else {
             fatalError("Failed to locate the json file")
         }
@@ -34,12 +34,12 @@ struct CurrencyProvider: CurrencyProviding {
             let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
             let currenciesData: CurrenciesData = try responseDecoder.decodeModel(from: data)
 
-            return currenciesData
+            return currenciesData.currencies
         } catch let error {
-            os_log("Failed to fetch the currencies data with error: %@", log: .modelsLogger,
+            os_log("Failed to decode the currencies data with error: %@", log: .modelsLogger,
                    type: .error, error.localizedDescription)
 
-            return nil
+            return []
         }
     }
 }
