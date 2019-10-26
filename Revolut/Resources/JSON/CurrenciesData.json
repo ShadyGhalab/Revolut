@@ -1,0 +1,60 @@
+
+{
+  "currencies": [
+    {
+      "imageName": "Czech",
+      "code": "CZK",
+      "name": "Czech koruna"
+    },
+    {
+      "imageName": "Denmark",
+      "code": "DKK",
+      "name": "Danish Krone"
+    },
+    {
+      "imageName": "EU",
+      "code": "EUR",
+      "name": "Euro"
+    },
+    {
+      "imageName": "HK",
+      "code": "HKD",
+      "name": "Hong Kong Dollar"
+    },
+    {
+      "imageName": "Hungary",
+      "code": "HUF",
+      "name": "Hungarian Forint"
+    },
+    {
+      "imageName": "Norway",
+      "code": "NOK",
+      "name": "Norwegian Krone"
+    },
+    {
+      "imageName": "Poland",
+      "code": "PLN",
+      "name": "Polish Zloty"
+    },
+    {
+      "imageName": "Singapore",
+      "code": "SGD",
+      "name": "Singapore Dollar"
+    },
+    {
+      "imageName": "Sweden",
+      "code": "SEK",
+      "name": "Swedish krona"
+    },
+    {
+      "imageName": "UK",
+      "code": "GBP",
+      "name": "Pound sterling"
+    },
+    {
+      "imageName": "US",
+      "code": "USD",
+      "name": "United States Dollar"
+    }
+  ]
+}

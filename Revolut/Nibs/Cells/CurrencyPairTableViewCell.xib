@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyPairTableViewCell" rowHeight="80" id="gPK-m4-vQh" customClass="CurrencyPairTableViewCell" customModule="Revolut" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gPK-m4-vQh" id="KaH-jN-z3r">
+                <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqG-4W-JZl">
+                        <rect key="frame" x="16" y="16" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVS-9t-9ME">
+                        <rect key="frame" x="16" y="64" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                        <color key="textColor" red="0.5450980392" green="0.58431372550000005" blue="0.61960784310000006" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vub-7T-OhF">
+                        <rect key="frame" x="358" y="16" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlt-l4-4FN">
+                        <rect key="frame" x="358" y="64" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.5450980392" green="0.58431372550000005" blue="0.61960784310000006" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Vub-7T-OhF" firstAttribute="top" secondItem="KaH-jN-z3r" secondAttribute="top" constant="16" id="0da-YQ-gRF"/>
+                    <constraint firstItem="mqG-4W-JZl" firstAttribute="top" secondItem="KaH-jN-z3r" secondAttribute="top" constant="16" id="Ivp-W6-Mvp"/>
+                    <constraint firstItem="Dlt-l4-4FN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DVS-9t-9ME" secondAttribute="trailing" constant="8" symbolic="YES" id="J3U-lq-mHB"/>
+                    <constraint firstItem="DVS-9t-9ME" firstAttribute="leading" secondItem="KaH-jN-z3r" secondAttribute="leading" constant="16" id="QUv-Ia-lXf"/>
+                    <constraint firstItem="Vub-7T-OhF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mqG-4W-JZl" secondAttribute="trailing" constant="8" symbolic="YES" id="Qj1-U7-hn4"/>
+                    <constraint firstAttribute="bottom" secondItem="DVS-9t-9ME" secondAttribute="bottom" constant="16" id="Rve-Sj-B2G"/>
+                    <constraint firstAttribute="bottom" secondItem="Dlt-l4-4FN" secondAttribute="bottom" constant="16" id="Wj5-eZ-C0o"/>
+                    <constraint firstItem="mqG-4W-JZl" firstAttribute="leading" secondItem="KaH-jN-z3r" secondAttribute="leading" constant="16" id="bvk-N2-454"/>
+                    <constraint firstAttribute="trailing" secondItem="Vub-7T-OhF" secondAttribute="trailing" constant="16" id="ciy-QL-Z6E"/>
+                    <constraint firstAttribute="trailing" secondItem="Dlt-l4-4FN" secondAttribute="trailing" constant="16" id="eg3-Vj-Ju5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="fromCurrencyCodeLabel" destination="mqG-4W-JZl" id="PEG-Yr-XRo"/>
+                <outlet property="fromCurrencyNameLabel" destination="DVS-9t-9ME" id="nkp-tw-ygP"/>
+                <outlet property="toCurrencyCodeLabel" destination="Vub-7T-OhF" id="x0I-T2-aNz"/>
+                <outlet property="toCurrencyNameLabel" destination="Dlt-l4-4FN" id="kau-zd-UuN"/>
+            </connections>
+            <point key="canvasLocation" x="-259" y="-57"/>
+        </tableViewCell>
+    </objects>
+</document>

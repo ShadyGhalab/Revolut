@@ -1,0 +1,15 @@
+
+{
+  "currencies": [
+    {
+      "imageName": "UK",
+      "code": "GBP",
+      "name": "Pound sterling"
+    },
+    {
+      "imageName": "US",
+      "code": "USD",
+      "name": "United States Dollar"
+    }
+  ]
+}
