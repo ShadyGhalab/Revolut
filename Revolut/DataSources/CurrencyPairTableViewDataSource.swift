@@ -36,14 +36,17 @@ final class CurrencyPairTableViewDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete, let currencyPair = currencyPair(at: indexPath) else { return }
-
-        fetchedResultController.managedObjectContext.delete(currencyPair)
-        fetchedResultController.managedObjectContext.saveContext()
+        delete(currencyPair: currencyPair)
     }
 }
 
 extension CurrencyPairTableViewDataSource {
     private func currencyPair(at indexPath: IndexPath) -> CurrencyPair? {
         return fetchedResultController.fetchedObjects?[indexPath.item]
+    }
+
+    private func delete(currencyPair: CurrencyPair) {
+        fetchedResultController.managedObjectContext.delete(currencyPair)
+        fetchedResultController.managedObjectContext.saveContext()
     }
 }

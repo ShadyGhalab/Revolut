@@ -2,7 +2,7 @@
 //  NSManagedObjectContext+Save.swift
 //  Revolut
 //
-//  Created by Shady Ghalab on 26.10.19.
+//  Created by Shady Mustafa on 26.10.19.
 //  Copyright © 2019 Revolut Financial. All rights reserved.
 //
 
@@ -11,10 +11,9 @@ import CoreData
 
 extension NSManagedObjectContext {
     func saveContext () {
-        let context = self
-        if context.hasChanges {
+        if hasChanges {
             do {
-                try context.save()
+                try save()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

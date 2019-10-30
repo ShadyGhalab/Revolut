@@ -42,6 +42,8 @@ final class CurrencyPairViewController: UIViewController, StoryboardMakeable {
 
     private func bindViewModel() {
         viewModel.outputs.didDeleteCurrencyPair = { [unowned self] indexPath in
+            let cell = self.tableView.cellForRow(at: indexPath) as? CurrencyPairTableViewCell
+            cell?.viewModel.inputs.reset()
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

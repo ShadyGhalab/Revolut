@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Feed {
+protocol Feed {
     associatedtype JSONResponseStructure
 
     var absolutePath: String { get }
@@ -17,5 +17,5 @@ public protocol Feed {
 }
 
 extension Feed {
-    public var customDateFormat: String? { return nil }
+    var customDateFormat: String? { return nil }
 }

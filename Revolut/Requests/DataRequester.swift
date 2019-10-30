@@ -10,15 +10,32 @@ import Foundation
 import os.log
 import UIKit
 
+private enum Constants {
+    static let timeoutIntervalForRequest: TimeInterval = 29
+    static let timeoutIntervalForResource: TimeInterval = 59
+}
+
 protocol DataRequesting {
     func requestData<F>(from feed: F, completionHandler: @escaping (Result<Data, FetchError>) -> Void) where F: Feed
 }
 
 protocol URLSessionRequesting {
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+    var timeoutIntervalForRequest: TimeInterval { get set }
+    var timeoutIntervalForResource: TimeInterval { get set }
 }
 
-extension URLSession: URLSessionRequesting { }
+extension URLSession: URLSessionRequesting {
+    var timeoutIntervalForRequest: TimeInterval {
+        get { Constants.timeoutIntervalForRequest }
+        set { }
+    }
+
+    var timeoutIntervalForResource: TimeInterval {
+        get { Constants.timeoutIntervalForResource }
+        set { }
+    }
+}
 
 struct DataRequester: DataRequesting {
 
@@ -28,7 +45,7 @@ struct DataRequester: DataRequesting {
         self.urlSession = urlSession
     }
 
-    public func requestData<F>(from feed: F, completionHandler: @escaping (Result<Data, FetchError>) -> Void) where F: Feed {
+    func requestData<F>(from feed: F, completionHandler: @escaping (Result<Data, FetchError>) -> Void) where F: Feed {
         let absolutePath = feed.absolutePath
 
         os_log("requesting feed %@ from %@ with override parameters: %@)",

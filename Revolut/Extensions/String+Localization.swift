@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension String {
+extension String {
     /**
      Localized version of this string using it as a key in Localizable.strings in the main Bundle.
      */

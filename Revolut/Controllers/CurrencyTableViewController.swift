@@ -62,8 +62,8 @@ final class CurrencyTableViewController: UITableViewController, StoryboardMakeab
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-
         guard let viewController = segue.destination as? CurrencyPairViewController else { return }
+
         viewController.loadViewIfNeeded()
         viewController.viewModel = CurrencyPairViewModel()
     }

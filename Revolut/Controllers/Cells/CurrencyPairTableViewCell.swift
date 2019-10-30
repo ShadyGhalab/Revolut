@@ -32,13 +32,13 @@ class CurrencyPairTableViewCell: UITableViewCell {
         toCurrencyNameLabel.text = viewModel.outputs.currencyPair.toCurrencyName + "  " + viewModel.outputs.currencyPair.toCurrencyCode
         fromCurrencyNameLabel.text = viewModel.outputs.currencyPair.fromCurrencyName
 
-        viewModel.outputs.updateCurrencyRateIfNeeded = { [weak self] currencyRate in
+        viewModel.outputs.updateCurrencyRateIfNeeded = { [unowned self] currencyRate in
             if currencyRate.count >= Constants.minDigitsToApplySmallFont {
-                self?.toCurrencyRateLabel.attributedText = self?.attributedText(for: currencyRate)
+                self.toCurrencyRateLabel.attributedText = self.attributedText(for: currencyRate)
                 return
             }
 
-            self?.toCurrencyRateLabel.text = currencyRate
+            self.toCurrencyRateLabel.text = currencyRate
         }
     }
 
@@ -54,11 +54,14 @@ class CurrencyPairTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        viewModel.inputs.prepareForReuse()
-
+        viewModel.inputs.reset()
         toCurrencyRateLabel.text = nil
         fromCurrencyRateLabel.text = nil
         toCurrencyNameLabel.text = nil
         fromCurrencyNameLabel.text = nil
+    }
+
+    deinit {
+        viewModel.inputs.reset()
     }
 }

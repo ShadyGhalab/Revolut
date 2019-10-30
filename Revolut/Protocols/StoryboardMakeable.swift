@@ -7,17 +7,16 @@
 //
 
 import Foundation
-
 import UIKit
 
-public protocol StoryboardMakeable: class {
+protocol StoryboardMakeable: AnyObject {
 
     associatedtype StoryboardMakeableType
     static var storyboardName: String { get }
     static func make() -> StoryboardMakeableType
 }
 
-public extension StoryboardMakeable where Self: UIViewController {
+extension StoryboardMakeable where Self: UIViewController {
 
     static func make() -> StoryboardMakeableType {
         let viewControllerId = String(describing: self)

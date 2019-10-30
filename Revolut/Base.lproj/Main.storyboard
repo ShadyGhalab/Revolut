@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Fo-67-z6d">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -150,6 +150,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="30y-RT-xCu"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
                                 <inset key="contentEdgeInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Add Currency Pair" image="Plus">
@@ -169,7 +170,7 @@
                             <constraint firstItem="6tm-cQ-GxT" firstAttribute="top" secondItem="pGt-2b-3bQ" secondAttribute="bottom" constant="50" id="4w8-mA-vBN"/>
                             <constraint firstItem="6tm-cQ-GxT" firstAttribute="bottom" secondItem="zc0-l8-npZ" secondAttribute="bottom" id="CUI-yL-tYV"/>
                             <constraint firstItem="zc0-l8-npZ" firstAttribute="trailing" secondItem="6tm-cQ-GxT" secondAttribute="trailing" constant="20" id="aOj-CW-ElD"/>
-                            <constraint firstItem="6tm-cQ-GxT" firstAttribute="leading" secondItem="226-uw-4y0" secondAttribute="leadingMargin" id="ojg-x2-XKd"/>
+                            <constraint firstItem="6tm-cQ-GxT" firstAttribute="leading" secondItem="226-uw-4y0" secondAttribute="leading" constant="20" id="ojg-x2-XKd"/>
                             <constraint firstItem="pGt-2b-3bQ" firstAttribute="leading" secondItem="zc0-l8-npZ" secondAttribute="leading" constant="25" id="qBn-yD-Ylh"/>
                             <constraint firstItem="zc0-l8-npZ" firstAttribute="trailing" secondItem="pGt-2b-3bQ" secondAttribute="trailing" constant="25" id="vdl-rv-Hoh"/>
                             <constraint firstItem="pGt-2b-3bQ" firstAttribute="top" secondItem="zc0-l8-npZ" secondAttribute="top" constant="50" id="vkh-rI-3cS"/>
@@ -183,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lee-hq-wv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1796" y="-8"/>
+            <point key="canvasLocation" x="1795.6521739130437" y="-8.0357142857142847"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="znv-2q-xVj">

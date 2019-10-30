@@ -33,7 +33,6 @@ class CurrencyTableViewSnapshotsTests: FBSnapshotTestCase {
         viewController.viewModel = viewModel
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.isHidden = true
-        navigationController.setViewControllers([viewController], animated: false)
         window.addSubview(navigationController.view)
         window.makeKeyAndVisible()
     }
@@ -44,9 +43,9 @@ class CurrencyTableViewSnapshotsTests: FBSnapshotTestCase {
 }
 
 private final class CurrencyTableViewModelMock: CurrencyTableViewInputs, CurrencyTableViewOutputs, CurrencyTableViewProtocol {
-    var inputs: CurrencyTableViewInputs { return self }
+    var inputs: CurrencyTableViewInputs {  self }
     var outputs: CurrencyTableViewOutputs {
-        get { return self }
+        get {  self }
         set { }
     }
     

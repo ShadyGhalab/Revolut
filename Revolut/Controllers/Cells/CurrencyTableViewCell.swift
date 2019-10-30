@@ -14,10 +14,6 @@ final class CurrencyTableViewCell: UITableViewCell {
     @IBOutlet weak var currencyCodeLabel: UILabel!
     @IBOutlet weak var currencyNameLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     override func prepareForReuse() {
         super.prepareForReuse()
         isUserInteractionEnabled = true

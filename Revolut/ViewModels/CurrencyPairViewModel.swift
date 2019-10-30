@@ -14,6 +14,7 @@ protocol CurrencyPairViewInputs { }
 protocol CurrencyPairViewOutputs {
     var fetchedResultController: NSFetchedResultsController<CurrencyPair> { get }
     var didDeleteCurrencyPair: ((IndexPath) -> Void)? { get set }
+    var headerLabelLocalizedText: String { get }
 }
 
 protocol CurrencyPairViewProtocol: AnyObject {
@@ -23,16 +24,23 @@ protocol CurrencyPairViewProtocol: AnyObject {
 
 final class CurrencyPairViewModel: NSObject, CurrencyPairViewInputs, CurrencyPairViewOutputs, CurrencyPairViewProtocol {
 
-    var inputs: CurrencyPairViewInputs { return self }
-    var outputs: CurrencyPairViewOutputs { set { } get { return self } }
+    var inputs: CurrencyPairViewInputs { self }
+    var outputs: CurrencyPairViewOutputs {
+        get { self }
+        set { }
+    }
 
     private var _fetchedResultsController: NSFetchedResultsController<CurrencyPair>? // swiftlint:disable:this identifier_name
     private let viewContext: NSManagedObjectContext
-    var didDeleteCurrencyPair: ( (IndexPath) -> Void)?
 
     init(viewContext: NSManagedObjectContext = AppDelegate.shared.persistentContainer.viewContext) {
         self.viewContext = viewContext
+        self.headerLabelLocalizedText = "revolut.addCurrencyPair.title".localized
     }
+
+    // Outputs
+    var didDeleteCurrencyPair: ( (IndexPath) -> Void)?
+    let headerLabelLocalizedText: String
 }
 
 extension CurrencyPairViewModel: NSFetchedResultsControllerDelegate {
@@ -43,15 +51,14 @@ extension CurrencyPairViewModel: NSFetchedResultsControllerDelegate {
         }
 
         let fetchRequest: NSFetchRequest<CurrencyPair> = CurrencyPair.fetchRequest()
-        let managedObjectContext = viewContext
 
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-        let resultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                           managedObjectContext: managedObjectContext,
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                           managedObjectContext: viewContext,
                                                            sectionNameKeyPath: nil,
                                                            cacheName: nil)
-        resultsController.delegate = self
-        _fetchedResultsController = resultsController
+         fetchedResultsController .delegate = self
+        _fetchedResultsController = fetchedResultsController
 
         do {
             try _fetchedResultsController?.performFetch()
@@ -66,9 +73,7 @@ extension CurrencyPairViewModel: NSFetchedResultsControllerDelegate {
                     didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .delete:
-            if let indexPath = indexPath {
-                didDeleteCurrencyPair?(indexPath)
-            }
+            if let indexPath = indexPath { didDeleteCurrencyPair?(indexPath) }
         default:
             break
         }

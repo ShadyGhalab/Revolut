@@ -34,6 +34,7 @@ final class AddCurrencyPairViewController: UIViewController, StoryboardMakeable 
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         guard let viewController = segue.destination as? CurrencyTableViewController else { return }
 
         let currencies = viewModel.outputs.currencies

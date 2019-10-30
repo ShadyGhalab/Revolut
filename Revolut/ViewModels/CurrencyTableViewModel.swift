@@ -29,9 +29,9 @@ protocol CurrencyTableViewProtocol: AnyObject {
 
 final class CurrencyTableViewModel: CurrencyTableViewInputs, CurrencyTableViewOutputs, CurrencyTableViewProtocol {
 
-    var inputs: CurrencyTableViewInputs { return self }
+    var inputs: CurrencyTableViewInputs { self }
     var outputs: CurrencyTableViewOutputs {
-        get { return self }
+        get { self }
         set { }
     }
 

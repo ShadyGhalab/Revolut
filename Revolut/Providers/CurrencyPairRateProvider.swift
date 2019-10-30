@@ -25,6 +25,11 @@ struct CurrencyPairRateProvider: CurrencyPairRateProviding {
     }
 
     func rate(fromCurrencyCode: String, toCurrencyCode: String, completionHandler: @escaping (CurrencyRatesFeed.JSONResponseStructure?) -> Void) {
+        guard !fromCurrencyCode.isEmpty || !toCurrencyCode.isEmpty else {
+            completionHandler(nil)
+            return
+        }
+
         let pairCode = fromCurrencyCode + toCurrencyCode
         let feed = CurrencyRatesFeed(absolutePath: absolutePath, parameters: [["pairs": pairCode]])
 
@@ -32,8 +37,10 @@ struct CurrencyPairRateProvider: CurrencyPairRateProviding {
             switch $0 {
             case .success(let value):
                 completionHandler(value)
+                return
             case .failure(_):
                 completionHandler(nil)
+                return
             }
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol ViewLoading {}
+protocol ViewLoading {}
 
 extension UIView: ViewLoading {}
 

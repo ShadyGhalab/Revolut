@@ -2,7 +2,7 @@
 //  Configuration.swift
 //  Revolut
 //
-//  Created by Shady Ghalab on 26.10.19.
+//  Created by Shady Mustafa on 26.10.19.
 //  Copyright © 2019 Revolut Financial. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ enum ServerEnvironment: String {
 }
 
 struct Configuration {
-    public let backendEnvironment: ServerEnvironment
+    let backendEnvironment: ServerEnvironment
 
     //swiftlint:disable force_unwrapping
     var backendURL: URL {

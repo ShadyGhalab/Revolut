@@ -10,13 +10,14 @@ import Foundation
 @testable import Revolut
 
 struct URLSessionMock: URLSessionRequesting {
-   
     let shouldError: Bool
     let error: FetchError
     let expectedData: Data
     let sessionDataTask = URLSession.shared.dataTask(with: URL(string: "https://www.revolut.com")!)
     let response: HTTPURLResponse?
-    
+    var timeoutIntervalForRequest: TimeInterval = 30
+    var timeoutIntervalForResource: TimeInterval = 60
+
     init(shouldError: Bool = false, withError error: FetchError = .noContentReturned, expectedData: Data = Data(), response: HTTPURLResponse? = HTTPURLResponse()) {
         self.shouldError = shouldError
         self.error = error

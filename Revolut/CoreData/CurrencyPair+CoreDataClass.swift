@@ -11,6 +11,6 @@ import Foundation
 import CoreData
 
 @objc(CurrencyPair)
-public class CurrencyPair: NSManagedObject {
+class CurrencyPair: NSManagedObject {
 
 }

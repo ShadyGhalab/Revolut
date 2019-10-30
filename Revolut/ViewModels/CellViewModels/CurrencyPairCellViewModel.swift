@@ -10,10 +10,11 @@ import Foundation
 
 private enum Constants {
     static let timeInterval: TimeInterval = 1
+    static let timeout: TimeInterval = 30
 }
 
 protocol CurrencyPairCellViewInputs {
-    func prepareForReuse()
+    func reset()
 }
 
 protocol CurrencyPairCellViewOutputs {
@@ -28,49 +29,57 @@ protocol CurrencyPairCellViewProtocol: AnyObject {
 
 final class CurrencyPairCellViewModel: CurrencyPairCellViewInputs, CurrencyPairCellViewOutputs, CurrencyPairCellViewProtocol {
 
-    var inputs: CurrencyPairCellViewInputs { return self }
+    var inputs: CurrencyPairCellViewInputs { self }
     var outputs: CurrencyPairCellViewOutputs {
+        get { self }
         set { }
-        get { return self }
     }
 
+    private var timer: Timer?
+    private var currencyRate: String?
     private let currencyPairRateProvider: CurrencyPairRateProviding
-    private var isCurrencyRateBeingFetched: Bool = false
-    private var time: Timer?
-    private var currencyRate: String? {
-        willSet {
-            if let newRate = newValue, newRate != currencyRate {
-                updateCurrencyRateIfNeeded?(newRate)
-            }
-        }
-    }
+    private let dispatchGroup: DispatchGroup = DispatchGroup()
+    private let dispatchQueue: DispatchQueue = DispatchQueue(label: "concurrentQueue",
+                                                             qos: .userInitiated,
+                                                             attributes: .concurrent,
+                                                             autoreleaseFrequency: .inherit,
+                                                             target: nil)
 
     init(currencyPair: CurrencyPair, currencyPairRateProvider: CurrencyPairRateProviding = CurrencyPairRateProvider(), timerRepeats: Bool = true) {
         self.currencyPairRateProvider = currencyPairRateProvider
         self.currencyPair = currencyPair
 
-        time = Timer.scheduledTimer(timeInterval: Constants.timeInterval, target: self,
+        timer = Timer.scheduledTimer(timeInterval: Constants.timeInterval, target: self,
                                     selector: #selector(fetchCurrencyPairRate), userInfo: nil, repeats: timerRepeats)
     }
 
     @objc private func fetchCurrencyPairRate() {
-        guard !isCurrencyRateBeingFetched  else { return }
 
-        isCurrencyRateBeingFetched = true
-        currencyPairRateProvider.rate(fromCurrencyCode: currencyPair.fromCurrencyCode,
-                                    toCurrencyCode: currencyPair.toCurrencyCode) { [weak self] currencyRate in
-                DispatchQueue.main.async {
-                    if let currencyRate: Double = currencyRate?.values.first {
-                        self?.currencyRate = String(describing: currencyRate.rounded(toPlaces: 4))
-                    }
+        dispatchQueue.async { [weak self] in
+            guard let self = self else { return }
+
+            self.dispatchGroup.enter()
+            self.currencyPairRateProvider.rate(fromCurrencyCode: self.currencyPair.fromCurrencyCode,
+                                               toCurrencyCode: self.currencyPair.toCurrencyCode) {
+                if let currencyRate = $0?.values.first {
+                    self.currencyRate = String(describing: currencyRate.rounded(toPlaces: 4))
                 }
 
-                self?.isCurrencyRateBeingFetched = false
+                self.dispatchGroup.leave()
+            }
+
+            let dispatchTimeoutResult = self.dispatchGroup.wait(timeout: .now() + Constants.timeout)
+            if dispatchTimeoutResult == .success, let currencyRate = self.currencyRate {
+                DispatchQueue.main.async {
+                    self.updateCurrencyRateIfNeeded?(currencyRate)
+                }
+            }
         }
     }
 
-    func prepareForReuse() {
-        time?.invalidate()
+    func reset() {
+        timer?.invalidate()
+        timer = nil
     }
 
     // Outputs

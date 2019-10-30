@@ -23,8 +23,8 @@ protocol AddCurrencyPairViewProtocol: Any {
 
 struct AddCurrencyPairViewModel: AddCurrencyPairViewInputs, AddCurrencyPairViewOutputs, AddCurrencyPairViewProtocol {
 
-    var inputs: AddCurrencyPairViewInputs { return self }
-    var outputs: AddCurrencyPairViewOutputs { return self }
+    var inputs: AddCurrencyPairViewInputs { self }
+    var outputs: AddCurrencyPairViewOutputs { self }
 
     init(currencyProvider: CurrencyProviding = CurrencyProvider()) {
         titleLabelLocalizedText = "revolut.addCurrencyPair.title".localized

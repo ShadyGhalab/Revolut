@@ -49,7 +49,6 @@ class CurrencyPairViewSnapshotsTests: FBSnapshotTestCase {
         viewController.viewModel = viewModel
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.isHidden = true
-        navigationController.setViewControllers([viewController], animated: false)
         window.addSubview(navigationController.view)
         window.makeKeyAndVisible()
     }

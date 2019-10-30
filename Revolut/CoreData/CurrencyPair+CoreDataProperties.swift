@@ -12,11 +12,11 @@ import CoreData
 
 extension CurrencyPair {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<CurrencyPair> {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<CurrencyPair> {
         return NSFetchRequest<CurrencyPair>(entityName: "CurrencyPair")
     }
 
-    @nonobjc public class func fetchRequest(fromCurrencyCode: String, toCurrencyCode: String) -> NSFetchRequest<CurrencyPair> {
+    @nonobjc class func fetchRequest(fromCurrencyCode: String, toCurrencyCode: String) -> NSFetchRequest<CurrencyPair> {
         let fetcRequest: NSFetchRequest = CurrencyPair.fetchRequest()
         let predicate = NSPredicate(format: "fromCurrencyCode == %@ && toCurrencyCode == %@", fromCurrencyCode, toCurrencyCode)
         fetcRequest.predicate = predicate
@@ -24,11 +24,11 @@ extension CurrencyPair {
         return fetcRequest
     }
 
-    @NSManaged public var fromCurrencyCode: String
-    @NSManaged public var toCurrencyCode: String
-    @NSManaged public var fromCurrencyName: String
-    @NSManaged public var toCurrencyName: String
-    @NSManaged public var createdAt: Date
+    @NSManaged var fromCurrencyCode: String
+    @NSManaged var toCurrencyCode: String
+    @NSManaged var fromCurrencyName: String
+    @NSManaged var toCurrencyName: String
+    @NSManaged var createdAt: Date
 
     static func make(with viewContext: NSManagedObjectContext,
                      fromCurrencyCode: String,
