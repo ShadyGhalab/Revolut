@@ -19,8 +19,8 @@ protocol CurrencyTableViewInputs {
 
 protocol CurrencyTableViewOutputs {
     var userDidAddCurrencyPair: (() -> Void)? { get set }
-    var currencies: [Currency] { get }
     var tableViewNeedsAnimation: (() -> Void)? { get set }
+    var currencies: [Currency] { get }
 }
 
 protocol CurrencyTableViewProtocol: AnyObject {
@@ -65,7 +65,6 @@ final class CurrencyTableViewModel: CurrencyTableViewInputs, CurrencyTableViewOu
         let selectedCurrency = currencies[index]
         if !selectedCurrencies.contains { $0 == selectedCurrency } {
             selectedCurrencies.append(selectedCurrency)
-            return
         }
     }
 
