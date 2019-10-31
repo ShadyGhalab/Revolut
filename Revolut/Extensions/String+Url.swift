@@ -13,8 +13,13 @@ extension String {
         guard let url = URL(string: self) else { return false }
 
         var canOpenURL: Bool = false
-        DispatchQueue.main.sync {
+
+        if Thread.isMainThread {
             canOpenURL = UIApplication.shared.canOpenURL(url)
+        } else {
+            DispatchQueue.main.sync {
+                canOpenURL = UIApplication.shared.canOpenURL(url)
+            }
         }
 
         if !canOpenURL { return false }

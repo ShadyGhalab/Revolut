@@ -51,6 +51,7 @@ private final class CurrencyTableViewModelMock: CurrencyTableViewInputs, Currenc
     
     func userDidSelectCurrency(at index: Int) { }
     
+    let canAnimateTableView: Bool = true
     var userDidAddCurrencyPair: (() -> Void)?
     var currencies: [Currency] = [Currency.make(), Currency.make(imageName: "US", code: "USD", name: "United States Dollar")]
 }
