@@ -20,7 +20,7 @@ protocol CurrencyTableViewInputs {
 protocol CurrencyTableViewOutputs {
     var userDidAddCurrencyPair: (() -> Void)? { get set }
     var currencies: [Currency] { get }
-    var canAnimateTableView: Bool { get }
+    var tableViewNeedsAnimation: (() -> Void)? { get set }
 }
 
 protocol CurrencyTableViewProtocol: AnyObject {
@@ -43,6 +43,11 @@ final class CurrencyTableViewModel: CurrencyTableViewInputs, CurrencyTableViewOu
             addCurrencyPairIfNeeded()
             selectedCurrencies.removeAll()
         }
+
+        willSet {
+            guard selectedCurrencies.isEmpty else { return }
+            tableViewNeedsAnimation?()
+        }
     }
 
     private var currencyPair: CurrencyPair? {
@@ -62,13 +67,11 @@ final class CurrencyTableViewModel: CurrencyTableViewInputs, CurrencyTableViewOu
             selectedCurrencies.append(selectedCurrency)
             return
         }
-
-        canAnimateTableView = false
     }
 
     // Outputs
     var userDidAddCurrencyPair: (() -> Void)?
-    var canAnimateTableView: Bool = true
+    var tableViewNeedsAnimation: (() -> Void)?
     let currencies: [Currency]
 }
 
