@@ -12,7 +12,12 @@ extension String {
     var isValidUrl: Bool {
         guard let url = URL(string: self) else { return false }
 
-        if !UIApplication.shared.canOpenURL(url) { return false }
+        var canOpenURL: Bool = false
+        DispatchQueue.main.sync {
+            canOpenURL = UIApplication.shared.canOpenURL(url)
+        }
+
+        if !canOpenURL { return false }
 
         let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
         let predicate = NSPredicate(format: "SELF MATCHES %@", argumentArray: [regEx])
