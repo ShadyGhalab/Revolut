@@ -33,8 +33,9 @@ final class CurrencyTableViewController: UITableViewController, StoryboardMakeab
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        clearsSelectionOnViewWillAppear = true
+
         super.viewWillAppear(animated)
-        enableAllCellsUserInteraction()
     }
 
     private func bindViewModel() {
@@ -46,18 +47,9 @@ final class CurrencyTableViewController: UITableViewController, StoryboardMakeab
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.inputs.userDidSelectCurrency(at: indexPath.row)
 
-        tableView.animate()
-
-        disableCellUserInteraction(at: indexPath)
-    }
-
-    private func disableCellUserInteraction(at indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.isUserInteractionEnabled = false
-    }
-
-    private func enableAllCellsUserInteraction() {
-        _ = tableView.visibleCells.map { $0.isUserInteractionEnabled = true }
+        if viewModel.outputs.canAnimateTableView {
+            tableView.animate()
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

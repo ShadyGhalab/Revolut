@@ -20,6 +20,7 @@ protocol CurrencyTableViewInputs {
 protocol CurrencyTableViewOutputs {
     var userDidAddCurrencyPair: (() -> Void)? { get set }
     var currencies: [Currency] { get }
+    var canAnimateTableView: Bool { get }
 }
 
 protocol CurrencyTableViewProtocol: AnyObject {
@@ -57,13 +58,17 @@ final class CurrencyTableViewModel: CurrencyTableViewInputs, CurrencyTableViewOu
 
     func userDidSelectCurrency(at index: Int) {
         let selectedCurrency = currencies[index]
-        if !selectedCurrencies.contains(where: { $0 == selectedCurrency }) {
+        if !selectedCurrencies.contains { $0 == selectedCurrency } {
             selectedCurrencies.append(selectedCurrency)
+            return
         }
+
+        canAnimateTableView = false
     }
 
     // Outputs
     var userDidAddCurrencyPair: (() -> Void)?
+    var canAnimateTableView: Bool = true
     let currencies: [Currency]
 }
 
