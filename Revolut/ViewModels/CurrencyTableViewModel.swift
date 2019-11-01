@@ -19,7 +19,7 @@ protocol CurrencyTableViewInputs {
 
 protocol CurrencyTableViewOutputs {
     var userDidAddCurrencyPair: (() -> Void)? { get set }
-    var tableViewNeedsAnimation: (() -> Void)? { get set }
+    var didSelectFirstCurrency: (() -> Void)? { get set }
     var currencies: [Currency] { get }
 }
 
@@ -46,7 +46,7 @@ final class CurrencyTableViewModel: CurrencyTableViewInputs, CurrencyTableViewOu
 
         willSet {
             guard selectedCurrencies.isEmpty else { return }
-            tableViewNeedsAnimation?()
+            didSelectFirstCurrency?()
         }
     }
 
@@ -70,7 +70,7 @@ final class CurrencyTableViewModel: CurrencyTableViewInputs, CurrencyTableViewOu
 
     // Outputs
     var userDidAddCurrencyPair: (() -> Void)?
-    var tableViewNeedsAnimation: (() -> Void)?
+    var didSelectFirstCurrency: (() -> Void)?
     let currencies: [Currency]
 }
 

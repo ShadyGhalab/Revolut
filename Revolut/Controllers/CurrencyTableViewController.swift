@@ -43,7 +43,7 @@ final class CurrencyTableViewController: UITableViewController, StoryboardMakeab
             self.performSegue(withIdentifier: "ShowCurrencyPairsViewController", sender: nil)
         }
 
-        viewModel.outputs.tableViewNeedsAnimation = { [unowned self] in
+        viewModel.outputs.didSelectFirstCurrency = { [unowned self] in
             self.tableView.animate()
         }
     }
