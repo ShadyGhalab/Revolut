@@ -25,6 +25,6 @@ extension ViewLoading where Self: UIView {
     }
 
     private static var className: String {
-        return  String(describing: self)
+        String(describing: self)
     }
 }
